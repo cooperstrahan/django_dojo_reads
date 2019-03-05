@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coding Dojo Wall</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    .contain {
+        width: 90%;
+        margin: 2.5% auto;
+    }
+    .message {
+        margin-left: 2.5%;
+    }
+    .comment {
+        margin-left: 5%;
+        font-size: 90%;
+    }
+    .pushleft {
+        margin-left: 5px;
+    }
+</style>
+<body>
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Coding Dojo Wall</a>
+        <div class="form-inline">
+            <a class="navbar-brand mr-sm-2">Welcome, {{request.session.name}}!</a>
+            <a href="/books">Home</a>
+            <a class="pushleft" href='/logout'>Logout</a>
+        </div>
+    </nav>
+</body>
+</html>

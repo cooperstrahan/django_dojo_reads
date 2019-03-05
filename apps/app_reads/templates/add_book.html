@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coding Dojo Wall</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .cntr {
+            margin: 2.5% auto;
+            text-align: center;
+            
+        }
+        .sbs {
+            width: 40%;
+            display:inline-block;
+            vertical-align: top;
+            
+        }
+        .pushleft {
+            margin-left: 5px;
+        }
+        .pushright {
+            margin-right: 5%;
+        }
+    </style>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand"></a>
+            <div class="form-inline">
+                <a class="my-2 my-sm-0" href="/books">Home</a>
+                <a class="my-2 my-sm-0 pushleft" href='/logout'>Logout</a>
+            </div>
+        </nav>
+        <div class="jumbotron-fluid cntr">
+            <div class="sbs pushright">
+                <h1>Add a Book</h1>
+                <form action="\addBook" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-2 col-form-label">Title</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="author" class="col-sm-2 col-form-label">Existing Author</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="author1">
+                                <option>--select--</option>
+                                {% for author in authors%}
+                                <option>author.name</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="author" class="col-sm-2 col-form-label">New Author</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="author2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="description" class="col-sm-2 col-form-label">Review</label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" name="review" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div style="float: left;" >
+                        <label for="rating">Rating</label>
+                        <select name="rating">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary" name="Add" value="Add" style="float: right;">
+                </form>
+            </div>
+        </div>
+    </body>
+    </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coding Dojo Wall</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    .contain {
+        width: 90%;
+        margin: 2.5% auto;
+    }
+    .message {
+        margin-left: 2.5%;
+    }
+    .comment {
+        margin-left: 5%;
+        font-size: 90%;
+    }
+    .formish {
+        width: 30%;
+        padding-top: 1%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .pushleft {
+        margin-left: 5px;
+    }
+    .topline {
+        border-top: 1px solid black;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Welcome, {{request.session.name}}!</a>
+        <div class="form-inline">
+            <a class="my-2 my-sm-0" href="/books/add">Add Book and Review</a>
+            <a class="my-2 my-sm-0 pushleft" href='/logout'>Logout</a>
+        </div>
+    </nav>
+    <div class="contain">
+        <div class="formish">
+            <h4>Recent Book Reviews</h4>
+            {% for review in reviews reversed%}
+            <div class="topline">
+                <a href="/books/{{review.book_id.id}}">{{review.book_id.title}}</a>
+                <p>Rating: {{review.rating}}/5</p>
+                <p><a href="/users/{{review.user_id.id}}">{{review.user_id.first_name}}</a> says:</p>
+                <p>{{review.review}}</p>
+                <p>Date Posted: {{review.created_at}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        <div class="formish"> 
+            <h4>Other Books with Reviews</h4>
+            {% for review in reviews%}
+            <a style="display: block;" href="/books/{{review.book_id.id}}">{{review.book_id.title}}</a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
